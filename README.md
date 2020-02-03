@@ -18,7 +18,22 @@ The full book on Git (written by the makers themselves) can be found here: https
   - After desired development is achieved, a **Pull Request** (or PR, or merge request) can be made. Depending on your access level in your Git repo, you may either be able to approve this merge request yourself (though it is best practice to have others review your code first), or you may have to wait for an admin to approve the request for you.
 
 ## Some useful commands
-#### 1) Getting your bearings
+#### 1) Getting started
+```
+git clone <repo_link>
+```
+Create a local clone of a remote repository. Typically, if you find a package on Github/Gitlab, you'll see a button that says `Clone or Download`. There, they will list the link to replace `<repo_link>` with. You can either clone using:
+- `https` - Which requires that you authenticate with your account information for that server (username/password)
+- `ssh` - Which requires that you register **your machine** with your account on that server using and [SSH Key](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+
+Use `git clone` if the remote repo **already exists**.
+
+```
+git init
+```
+Initialize the folder that you're currently navigated to in your filesystem as a git repo. This will create a `.git` folder (which will probably be hidden) inside your current directory housing all the info that git needs. Note that in order to `push` to a remote, you will first have to define a remote repo to push to.
+
+#### 2) Getting your bearings
 ```
 git status
 ```
@@ -39,7 +54,7 @@ git log
 ```
 Shows the commit log of your repo, allowing you to quickly identify on which commit the _HEAD_ of each branch is located.
 
-#### 2) Making local changes
+#### 3) Making local changes
 ```
 git add [-u | <filename>]
 ```
@@ -73,7 +88,7 @@ git rebase [-i | <branch_name>]
 ```
 Use this tool (preferably in interactive mode, `-i`) to restructure the commit history of a branch. Commits here can be squashed (combined together for neatness), erased, re-messaged, among other things. Great if you want to tidy up your branch before merging.
 
-#### 3) Branching
+#### 4) Branching
 
 ```
 git checkout <branch_name>
@@ -96,7 +111,7 @@ git checkout <branch_name> -- <file_or_folder>
 ```
 The more generic variant of the previous: pull `file_or_folder` from the `branch_name` branch into your current branch. The resulting file will automatically be staged for commit in your current branch. Again **CAREFUL**, this will overwrite any uncommited changes!
 
-#### 4) Syncing local repo with remote repo
+#### 5) Syncing local repo with remote repo
 
 ```
 git fetch [fork_name branch_name]
