@@ -99,11 +99,26 @@ The more generic variant of the previous: pull `file_or_folder` from the `branch
 #### 4) Syncing local repo with remote repo
 
 ```
-git fetch
+git fetch [fork_name branch_name]
 ```
 Connects to remote repo, and merely informs local Git repo of any changes that have been pushed to remote. It _does not_ actually merge any of these changes in as yet, however. Fetch often, there's no harm in it.
 
 ```
-git pull
+git pull [fork_name branch_name]
 ```
 Actually _integrates_ any changes that exist to your branch from remote. If there are any conflicts, you will have to manually resolve them, telling Git which change to accept in every conflicting file. Often, you will be required to perform a `git pull` before doing a `git push` so that if there are any conflicts, you resolve them yourself before `push`ing to origin.
+
+```
+git push [fork_name branch_name]
+```
+Push any new commits you've made on your local repo up to your remote repo for all to see. Basically, if your hard drive were to corrupt itself here, you'd be able to pull all of your code onto another machine no problem! If there have been changes to the remote repo since your last `git pull`, you will be required to `pull` first before `push`ing. This allows you to clear up any potential conflicts (files that have changed both remotely and locally) before pushing your code up to the remote repo.
+
+```
+git remote [-v]
+```
+View all of the _forks_ that Git is currently tracking. [What's a fork?](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks)
+
+There are two important _fork_ names to know:
+1. `origin` - The online **copy** of the repo you currently have cloned. You likely have rights to push and pull to here to your whim. `git push`, `git pull`, and `git fetch` all default to the `origin` fork.
+
+2. `upstream` - The repo of code that your local code _comes from_. For example, you clone a package from Github written by SWRI. You, being the new developer you are, cannot directly push to this repo, you'd break SWRI's codebase. You can, however, list their Github repo as the `upstream` fork, and whenever they push new changes, you can `git pull upstream master` to pull their code into your repo.
